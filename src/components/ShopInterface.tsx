@@ -2,16 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import ItemCard from './ItemCard';
-
-// Define the shape of your item based on the CSV
-interface ShopItem {
-  Item: string;
-  Type: string;
-  Category: string;
-  Rarity: string;
-  'Cost (GP)': string | number;
-  Notes?: string;
-}
+import { ShopItem } from '@/types/ShopItem';
 
 export default function ShopInterface({ initialItems }: { initialItems: ShopItem[] }) {
   const [search, setSearch] = useState("");

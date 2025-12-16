@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { BASE_ARMORS } from "@/data/armorOptions";
 import { ITEM_VARIANTS } from "@/data/itemOptions";
 import VoidSelect from "./VoidSelect";
+import { ShopItem } from "@/types/ShopItem";
 
 // Types for your props
 interface ItemData {
@@ -18,7 +19,7 @@ interface ItemData {
 }
 
 interface ItemCardProps {
-    item: ItemData;
+    item: ShopItem;
     onAddToCart: (cartItem: any) => void;
 }
 
