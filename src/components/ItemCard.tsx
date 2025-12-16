@@ -52,10 +52,20 @@ export default function ItemCard({ item, onAddToCart }: ItemCardProps) {
     // --- ARMOR OPTIONS FILTER ---
     const armorOptions = useMemo(() => {
         if (!isArmorMath) return [];
-        // Mithral requires metal armor
-        if (isMithral) return BASE_ARMORS.filter(a => a.metal);
-        // Mariner's can be anything (usually)
-        return BASE_ARMORS;
+
+        return BASE_ARMORS.filter(a => {
+            // Rule 1: Shields are never valid for these specific enchantments
+            if (a.type === "Shield") return false;
+
+            // Rule 2: Mithral Specifics (Medium or Heavy, but NOT Hide)
+            if (isMithral) {
+                return (a.type === "Medium" || a.type === "Heavy") && a.name !== "Hide";
+            }
+
+            // Rule 3: Mariner's (applies to any armor that isn't a shield)
+            // Since we already filtered shields above, we return true for everything else.
+            return true;
+        });
     }, [isArmorMath, isMithral]);
 
     // --- HANDLERS ---
